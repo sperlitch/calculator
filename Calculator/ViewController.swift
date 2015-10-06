@@ -10,16 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var display: UILabel!
+    
+    var userBegin: Bool = true
+    
+    @IBAction func appendDigit(sender: UIButton) {
+        let digit = sender.currentTitle!
+        print("digit = \(digit)")
+        if userBegin {
+            display.text = digit
+            userBegin = false
+        } else {
+            display.text = display.text! + digit
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
