@@ -28,27 +28,42 @@ class ViewController: UIViewController {
     
     @IBAction func operate(sender: UIButton) {
         // Figure out who is sending
-        let operation = sender.currentTitle!
+        let mathSymbol = sender.currentTitle!
         
-        // If u
         if userBegin == false {
             enter()
         }
-        switch operation {
-            case "✖️":
-                if operandStack.count >= 2 {
-                    // Last two values operated on
-                    displayValue = operandStack.removeLast() * operandStack.removeLast()
-                    // Add this value to stack
-                    enter()
-                }
-//            case "➗":
-//            case "➕":
-//            case "➖":
+        
+        switch mathSymbol {
+            // pass function
+            case "✖️": performOperation { $0 * $1 } // only argument, last argument
+            case "➗": performOperation { $1 / $0 }
+            case "➕": performOperation { $0 + $1 }
+            case "➖": performOperation { $1 - $0 }
+            case "✔️": performSingleOperation { sqrt($0) }
         default: break
         }
     }
     
+    func performOperation(operation: (Double, Double) -> Double) {
+        if operandStack.count >= 2 {
+            // Last two values operated on
+            displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
+            // Add this value to stack
+            enter()
+        }
+    }
+    
+    func performSingleOperation(operation: Double -> Double) {
+        if operandStack.count >= 1 {
+            displayValue = operation(operandStack.removeLast())
+            enter()
+        }
+    }
+    
+    func multFunc(op1: Double, op2: Double) -> Double {
+        return op1 * op2
+    }
     
     var operandStack = Array<Double>()
     
