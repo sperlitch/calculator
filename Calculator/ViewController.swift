@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     
-    var userBegin: Bool = true
+    var userBegin = true
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -24,6 +24,48 @@ class ViewController: UIViewController {
             display.text = display.text! + digit
         }
         
+    }
+    
+    @IBAction func operate(sender: UIButton) {
+        // Figure out who is sending
+        let operation = sender.currentTitle!
+        
+        // If u
+        if userBegin == false {
+            enter()
+        }
+        switch operation {
+            case "✖️":
+                if operandStack.count >= 2 {
+                    // Last two values operated on
+                    displayValue = operandStack.removeLast() * operandStack.removeLast()
+                    // Add this value to stack
+                    enter()
+                }
+//            case "➗":
+//            case "➕":
+//            case "➖":
+        default: break
+        }
+    }
+    
+    
+    var operandStack = Array<Double>()
+    
+    @IBAction func enter() {
+        userBegin = true
+        operandStack.append(displayValue)
+        print("operandStack = \(operandStack)")
+    }
+    
+    var displayValue: Double {
+        get {
+            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+        }
+        set {
+            display.text = "\(newValue)"
+            userBegin = true
+        }
     }
 
 }
