@@ -42,6 +42,8 @@ class CalculatorBrain
         addOperation(InputStack.BinaryOperation("➕", +))
         addOperation(InputStack.BinaryOperation("➖") { $1 - $0 })
         addOperation(InputStack.UnaryOperation("✔️", sqrt))
+        addOperation(InputStack.UnaryOperation("sin", sin))
+        addOperation(InputStack.UnaryOperation("cos", cos))
     }
     
     private func evaluate(let stack: [InputStack]) -> (result: Double?, remainingStack: [InputStack]) {  // implicit let infront of passed arguments
