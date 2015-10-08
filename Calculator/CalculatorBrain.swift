@@ -108,4 +108,8 @@ class CalculatorBrain
         }
         return evaluate() // Evaluate after operation is entered
     }
+    
+    func clear() {
+        inputStack = [InputStack]()
+    }
 }

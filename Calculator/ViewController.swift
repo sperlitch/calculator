@@ -70,6 +70,12 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func clear() {
+        displayValue = 0
+        brain.clear()
+    }
+    
     var displayValue: Double {
         get {
             return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
