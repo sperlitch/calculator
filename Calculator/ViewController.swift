@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     var userBegin = true
     
+    var brain = CalculatorBrain() // MODEL
+    
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         print("digit = \(digit)")
@@ -27,50 +29,28 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operate(sender: UIButton) {
-        // Figure out who is sending
-        let mathSymbol = sender.currentTitle!
-        
         if userBegin == false {
             enter()
         }
-        
-        switch mathSymbol {
-            // pass function
-            case "✖️": performOperation { $0 * $1 } // only argument, last argument
-            case "➗": performOperation { $1 / $0 }
-            case "➕": performOperation { $0 + $1 }
-            case "➖": performOperation { $1 - $0 }
-            case "✔️": performSingleOperation { sqrt($0) }
-        default: break
+        // Figure out who is sending
+        if let mathSymbol = sender.currentTitle {
+            if let result = brain.performOperation(mathSymbol) {
+                displayValue = result
+            } else {
+                // Error
+                displayValue = 0
+            }
         }
     }
     
-    func performOperation(operation: (Double, Double) -> Double) {
-        if operandStack.count >= 2 {
-            // Last two values operated on
-            displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
-            // Add this value to stack
-            enter()
-        }
-    }
-    
-    func performSingleOperation(operation: Double -> Double) {
-        if operandStack.count >= 1 {
-            displayValue = operation(operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    func multFunc(op1: Double, op2: Double) -> Double {
-        return op1 * op2
-    }
-    
-    var operandStack = Array<Double>()
-    
-    @IBAction func enter() {
+    @IBAction func enter() { // Enter only happens after a number
         userBegin = true
-        operandStack.append(displayValue)
-        print("operandStack = \(operandStack)")
+        if let result = brain.pushNumber(displayValue) {
+            displayValue = result
+        } else {
+            // Error nil optional? error message in calculator
+            displayValue = 0
+        }
     }
     
     var displayValue: Double {
