@@ -16,14 +16,31 @@ class ViewController: UIViewController {
     
     var brain = CalculatorBrain() // MODEL
     
+//    @IBAction func appendDigit(sender: UIButton) {
+//        let digit = sender.currentTitle! // .
+//        print("digit = \(digit)")
+//        if userBegin {
+//            display.text = digit
+//            userBegin = false
+//        } else {
+//            display.text = display.text! + digit
+//        }
+//        
+//    }
+    
     @IBAction func appendDigit(sender: UIButton) {
-        let digit = sender.currentTitle!
-        print("digit = \(digit)")
+        let input = sender.currentTitle! // .
+        if input == "." {
+            if display.text?.rangeOfString(".") != nil {
+                return
+            }
+        }
+        print("input = \(input)")
         if userBegin {
-            display.text = digit
+            display.text = input
             userBegin = false
         } else {
-            display.text = display.text! + digit
+            display.text = display.text! + input
         }
         
     }
