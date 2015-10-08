@@ -162,6 +162,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uel-S6-dyb">
                                 <rect key="frame" x="272" y="195" width="64" height="64"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="π"/>
                                 <connections>
                                     <action selector="operate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DVF-Sn-Mtg"/>
                                 </connections>

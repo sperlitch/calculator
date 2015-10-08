@@ -12,6 +12,7 @@ class CalculatorBrain
 {
     private enum InputStack: CustomStringConvertible {
         case Number(Double)
+        case Constant(String, Double)
         case UnaryOperation(String, Double -> Double)
         case BinaryOperation(String, (Double, Double) -> Double)
         
@@ -24,6 +25,8 @@ class CalculatorBrain
                         return symbol // already strings
                 case .BinaryOperation(let symbol, _):
                         return symbol // already strings
+                case .Constant(let symbol, _):
+                    return symbol
                 }
             }
         }
@@ -44,6 +47,7 @@ class CalculatorBrain
         addOperation(InputStack.UnaryOperation("✔️", sqrt))
         addOperation(InputStack.UnaryOperation("sin", sin))
         addOperation(InputStack.UnaryOperation("cos", cos))
+        addOperation(InputStack.Constant("π", M_PI))
     }
     
     private func evaluate(let stack: [InputStack]) -> (result: Double?, remainingStack: [InputStack]) {  // implicit let infront of passed arguments
@@ -56,6 +60,9 @@ class CalculatorBrain
             case .Number(let number):
                 // Its a Double
                 return (number, remainingStack)
+                
+            case .Constant(_, let value):
+                return (value, remainingStack)
                 
             case .UnaryOperation(_, let typeOfUnaryOperation): // _ (underscore) = I dont care about it
                 
