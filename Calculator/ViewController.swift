@@ -1,4 +1,4 @@
-//
+//  
 //  ViewController.swift
 //  Calculator
 //
@@ -16,25 +16,28 @@ class ViewController: UIViewController {
     
     var brain = CalculatorBrain() // MODEL
     
-//    @IBAction func appendDigit(sender: UIButton) {
-//        let digit = sender.currentTitle! // .
-//        print("digit = \(digit)")
-//        if userBegin {
-//            display.text = digit
-//            userBegin = false
-//        } else {
-//            display.text = display.text! + digit
-//        }
-//        
-//    }
+    
+    @IBAction func getVariable(sender: UIButton) {
+        let input = sender.currentTitle!
+        if userBegin == false {
+            enter()
+        } else {
+            let value = brain.getVariable(input)
+            displayValue = value
+            enter()
+            
+        }
+    }
+    
+    @IBAction func setVariable() {
+        brain.setVariable(displayValue!)
+        enter()
+        userBegin = true
+    }
+    
     
     @IBAction func appendDigit(sender: UIButton) {
-        let input = sender.currentTitle! // .
-//        if input == "." {
-//            if display.text?.rangeOfString(".") != nil {
-//                return
-//            }
-//        }
+        let input = sender.currentTitle!
         print("input = \(input)")
         if userBegin {
             display.text = input
@@ -49,7 +52,6 @@ class ViewController: UIViewController {
         if userBegin == false {
             enter()
         }
-        // Figure out who is sending
         if let mathSymbol = sender.currentTitle {
             if let result = brain.performOperation(mathSymbol) {
                 displayValue = result

@@ -36,6 +36,8 @@ class CalculatorBrain
     
     private var knownOperations = [String: InputStack]() // Dictionary<String, Op>()
     
+    var variableValues = [String: Double]()
+    
     init() {
         func addOperation(operation: InputStack) {
             knownOperations[operation.description] = operation
@@ -95,6 +97,15 @@ class CalculatorBrain
         let (finalCalculation, finalStack) = evaluate(inputStack)
         print("\(inputStack) = \(finalCalculation) with \(finalStack) left over")
         return finalCalculation
+    }
+    
+    func setVariable(number: Double) {
+        variableValues["M"] = number
+        print(variableValues)
+    }
+    
+    func getVariable(key: String) -> Double? {
+        return variableValues[key]
     }
     
     func pushNumber(number: Double) -> Double? {
