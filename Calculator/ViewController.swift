@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     
     @IBAction func appendDigit(sender: UIButton) {
         let input = sender.currentTitle! // .
-        if input == "." {
-            if display.text?.rangeOfString(".") != nil {
-                return
-            }
-        }
+//        if input == "." {
+//            if display.text?.rangeOfString(".") != nil {
+//                return
+//            }
+//        }
         print("input = \(input)")
         if userBegin {
             display.text = input
@@ -62,11 +62,11 @@ class ViewController: UIViewController {
     
     @IBAction func enter() { // Enter only happens after a number
         userBegin = true
-        if let result = brain.pushNumber(displayValue) {
+        if displayValue == nil {
+            display.text = "Error!"
+        }
+        else if let result = brain.pushNumber(displayValue!) {
             displayValue = result
-        } else {
-            // Error nil optional? error message in calculator
-            displayValue = 0
         }
     }
     
@@ -76,12 +76,13 @@ class ViewController: UIViewController {
         brain.clear()
     }
     
-    var displayValue: Double {
+    var displayValue: Double? {
+        
         get {
-            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+            return NSNumberFormatter().numberFromString(display.text!)?.doubleValue
         }
         set {
-            display.text = "\(newValue)"
+            display.text = "\(newValue!)"
             userBegin = true
         }
     }
