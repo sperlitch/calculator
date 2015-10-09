@@ -64,6 +64,7 @@ class ViewController: UIViewController {
         userBegin = true
         if displayValue == nil {
             display.text = "Error!"
+            brain.clear()
         }
         else if let result = brain.pushNumber(displayValue!) {
             displayValue = result
