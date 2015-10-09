@@ -1,4 +1,4 @@
-//  
+//
 //  ViewController.swift
 //  Calculator
 //
@@ -15,6 +15,15 @@ class ViewController: UIViewController {
     var userBegin = true
     
     var brain = CalculatorBrain() // MODEL
+    
+    
+    @IBAction func backspace() {
+        display.text = String(display.text!.characters.dropLast())
+        if display.text!.characters.count < 1 {
+            display.text = "0"
+        }
+    }
+    
     
     
     @IBAction func getVariable(sender: UIButton) {
