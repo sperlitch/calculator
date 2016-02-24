@@ -38,6 +38,17 @@ class CalculatorBrain
     
     var variableValues = [String: Double]()
     
+    var final: String?
+    
+    var description: String {
+        get {
+            //print(self.final)
+            //print("description")
+            //return "\(self.final)"
+            return "\(inputStack)"
+        }
+    }
+    
     init() {
         func addOperation(operation: InputStack) {
             knownOperations[operation.description] = operation
@@ -57,10 +68,13 @@ class CalculatorBrain
         if !stack.isEmpty { // Stack has something in it
             var remainingStack = stack // Make a mutable copy, read and write
             let numOrSymbol = remainingStack.removeLast()
+            print("evaluate: \(stack)")
             switch numOrSymbol {
             
             case .Number(let number):
                 // Its a Double
+                //final = "\(number) + \(final!)"
+                //print(final!)
                 return (number, remainingStack)
                 
             case .Constant(_, let value):
@@ -88,6 +102,7 @@ class CalculatorBrain
                 }
             // No default because handled every switch case
             }
+           
         }
         return (nil, stack)
     }
@@ -96,6 +111,8 @@ class CalculatorBrain
     func evaluate() -> Double? {
         let (finalCalculation, finalStack) = evaluate(inputStack)
         print("\(inputStack) = \(finalCalculation) with \(finalStack) left over")
+        
+        //final = "\(inputStack)"
         return finalCalculation
     }
     
@@ -118,6 +135,10 @@ class CalculatorBrain
             inputStack.append(operation)
         }
         return evaluate() // Evaluate after operation is entered
+    }
+    
+    func getInputStack() -> String {
+        return "\(inputStack)"
     }
     
     func clear() {

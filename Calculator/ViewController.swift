@@ -10,7 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // CONTROLS THE DISPLAY
+    
+    
     @IBOutlet weak var display: UILabel!
+    
+    @IBOutlet weak var history: UILabel!
     
     var userBegin = true
     
@@ -34,7 +39,6 @@ class ViewController: UIViewController {
             let value = brain.getVariable(input)
             displayValue = value
             enter()
-            
         }
     }
     
@@ -49,7 +53,7 @@ class ViewController: UIViewController {
         let input = sender.currentTitle!
         print("input = \(input)")
         if userBegin {
-            display.text = input
+            display.text = input // set display
             userBegin = false
         } else {
             display.text = display.text! + input
@@ -59,11 +63,13 @@ class ViewController: UIViewController {
     
     @IBAction func operate(sender: UIButton) {
         if userBegin == false {
+            // 6 enter 3 enter X (enter)
             enter()
         }
         if let mathSymbol = sender.currentTitle {
             if let result = brain.performOperation(mathSymbol) {
                 displayValue = result
+                history.text = historyValue
             } else {
                 // Error
                 displayValue = 0
@@ -79,21 +85,32 @@ class ViewController: UIViewController {
         }
         else if let result = brain.pushNumber(displayValue!) {
             displayValue = result
+            history.text = historyValue
         }
     }
-    
+    // Use display.text to get user input or set user input
+    // Use displayValue to convert string to double
     
     @IBAction func clear() {
         displayValue = 0
         brain.clear()
     }
+    var historyValue: String? {
+        get {
+            return brain.description
+        }
+        set (newValue) {
+            
+        }
+    }
     
     var displayValue: Double? {
         
         get {
+            // return double from string
             return NSNumberFormatter().numberFromString(display.text!)?.doubleValue
         }
-        set {
+        set(newValue){
             display.text = "\(newValue!)"
             userBegin = true
         }
