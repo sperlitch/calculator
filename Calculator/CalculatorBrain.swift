@@ -11,20 +11,20 @@ import Foundation
 class CalculatorBrain
 {
     private enum InputStack: CustomStringConvertible {
-        case Number(Double)
-        case Constant(String, Double)
-        case UnaryOperation(String, Double -> Double)
-        case BinaryOperation(String, (Double, Double) -> Double)
+        case Number(Double) // 7.0
+        case Constant(String, Double) // PI
+        case UnaryOperation(String, Double -> Double) // Squareroot, exponent
+        case BinaryOperation(String, (Double, Double) -> Double) // multiplication, division, addition
         
         var description: String {
             get {
                 switch self {
                 case .Number(let number):
-                        return "\(number)"
+                        return "\(number)" // number as string
                 case .UnaryOperation(let symbol, _):
-                        return symbol // already strings
+                        return symbol // already strings: sqrt symbol
                 case .BinaryOperation(let symbol, _):
-                        return symbol // already strings
+                        return symbol // already strings + -
                 case .Constant(let symbol, _):
                     return symbol
                 }
@@ -66,8 +66,8 @@ class CalculatorBrain
     private func evaluate(let stack: [InputStack]) -> (result: Double?, remainingStack: [InputStack]) {  // implicit let infront of passed arguments
         
         if !stack.isEmpty { // Stack has something in it
-            var remainingStack = stack // Make a mutable copy, read and write
-            let numOrSymbol = remainingStack.removeLast()
+            var stack = stack // Make a mutable copy, read and write
+            let numOrSymbol = stack.removeLast()
             print("evaluate: \(stack)")
             switch numOrSymbol {
             
@@ -75,22 +75,22 @@ class CalculatorBrain
                 // Its a Double
                 //final = "\(number) + \(final!)"
                 //print(final!)
-                return (number, remainingStack)
+                return (number, stack)
                 
             case .Constant(_, let value):
-                return (value, remainingStack)
+                return (value, stack)
                 
             case .UnaryOperation(_, let typeOfUnaryOperation): // _ (underscore) = I dont care about it
                 
                 // Its a unary operator string ie square root
-                let stackEvaluation = evaluate(remainingStack) //  it has returned one number and remainingStack
+                let stackEvaluation = evaluate(stack) //  it has returned one number and remainingStack
                 
                 if let number = stackEvaluation.result { //
                     return (typeOfUnaryOperation(number), stackEvaluation.remainingStack)
                 }
             case .BinaryOperation(_, let typeOfBinaryOperation):
                 // It's a binary operator string ie + - * /
-                let stackFirstEvaluation = evaluate(remainingStack) // Pull off top
+                let stackFirstEvaluation = evaluate(stack) // Pull off top
                 
                 if let firstNumber = stackFirstEvaluation.result {
                     

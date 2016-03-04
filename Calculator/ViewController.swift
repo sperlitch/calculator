@@ -93,8 +93,10 @@ class ViewController: UIViewController {
     
     @IBAction func clear() {
         displayValue = 0
+        history.text = "[]"
         brain.clear()
     }
+    
     var historyValue: String? {
         get {
             return brain.description
