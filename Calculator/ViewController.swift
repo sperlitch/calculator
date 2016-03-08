@@ -56,7 +56,14 @@ class ViewController: UIViewController {
             display.text = input // set display
             userBegin = false
         } else {
-            display.text = display.text! + input
+            if (input == ".") {
+                if (display.text!.rangeOfString(".") == nil) {
+                    display.text = display.text! + input
+                }
+            } else {
+                display.text = display.text! + input
+            }
+            
         }
         
     }

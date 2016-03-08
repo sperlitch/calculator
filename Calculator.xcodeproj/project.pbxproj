@@ -14,7 +14,7 @@
 		72ECBBB91BBF0A4500806AC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72ECBBB71BBF0A4500806AC4 /* LaunchScreen.storyboard */; };
 		72ECBBC41BBF0A4500806AC4 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ECBBC31BBF0A4500806AC4 /* CalculatorTests.swift */; };
 		72ECBBCF1BBF0A4500806AC4 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ECBBCE1BBF0A4500806AC4 /* CalculatorUITests.swift */; };
-		72F343F51BC5C30600CE4265 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F343F41BC5C30600CE4265 /* CalculatorBrain.swift */; settings = {ASSET_TAGS = (); }; };
+		72F343F51BC5C30600CE4265 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F343F41BC5C30600CE4265 /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		722BE65F1C89E8A00078FF67 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = ../../Playground.playground; sourceTree = "<group>"; };
 		72ECBBAB1BBF0A4500806AC4 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72ECBBAE1BBF0A4500806AC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72ECBBB01BBF0A4500806AC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 			children = (
 				72ECBBAE1BBF0A4500806AC4 /* AppDelegate.swift */,
 				72ECBBB01BBF0A4500806AC4 /* ViewController.swift */,
+				722BE65F1C89E8A00078FF67 /* Playground.playground */,
 				72ECBBB21BBF0A4500806AC4 /* Main.storyboard */,
 				72F343F41BC5C30600CE4265 /* CalculatorBrain.swift */,
 				72ECBBB51BBF0A4500806AC4 /* Assets.xcassets */,
