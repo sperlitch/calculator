@@ -217,7 +217,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFz-90-40x">
                                 <rect key="frame" x="469.5" y="97" width="102.5" height="92.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="M"/>
+                                <state key="normal" title="?"/>
                                 <connections>
                                     <action selector="getVariable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ePu-tj-wd7"/>
                                 </connections>

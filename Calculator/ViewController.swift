@@ -37,7 +37,9 @@ class ViewController: UIViewController {
             enter()
         } else {
             let value = brain.getVariable(input)
-            displayValue = value
+            if (value != nil) {
+                displayValue = value
+            }
             enter()
         }
     }
