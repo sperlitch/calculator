@@ -36,7 +36,7 @@ class CalculatorBrain
     
     private var knownOperations = [String: InputStack]() // Dictionary<String, Op>()
     
-    var variableValues = [String: Double]()
+    var variableValues = Dictionary<String,Double>()
     
     var final: String?
     
